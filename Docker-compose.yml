@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  flask:
+    build: .
+    command: gunicorn -b 0.0.0.0:5000 hello:app --reload # gunicord - production server hello-name of the file with a Flask instance
+             # flask run --host=0.0.0.0
+    environment: # environment variables
+        - FLASK_APP=hello.py
+        - FLASK_ENV=development
+        - PYTHONUNBUFFERED=True
+    ports:
+        - "5000:5000" # port on the pc:port on the container
+    volumes:
+        - ./:/root # live updates
+
